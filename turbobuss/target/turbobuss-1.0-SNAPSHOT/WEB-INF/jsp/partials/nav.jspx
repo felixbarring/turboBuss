@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nav class="container">
+    
+    <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                 <a href="main?view=home" class="btn btn-default" role="button">Home</a>
+                <a href="main?view=timeTables" class="btn btn-default" role="button">Time Tables</a>
+                <a href="main?view=travelPlanner" class="btn btn-default" role="button">Travel Planner</a>  
+                <a href="main?view=about" class="btn btn-default" role="button">About</a>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <a href="../" class="navbar-brand">Shit</a>
+                <a href="../" class="navbar-brand">Crap</a>
+            </ul>
+        </div>
+    
+</nav>

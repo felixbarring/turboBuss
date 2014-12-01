@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+                doctype-system="http://www.w3c.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <html>
+    <head>
+        <title>JPA Guest Book Web Application Tutorial</title>
+
+
+        <link rel="stylesheet" href="resources/css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="resources/css/darkstrap.css" type="text/css"/>
+
+    </head>
+ 
+    <body>
+        <h1> Hello :-) </h1>
+        
+        <a href="main?view=main">The app</a> (using, Servlets, JSPs, Bootstrap and the FrontController pattern)
+        
+    </body>
+ </html>
+</jsp:root>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

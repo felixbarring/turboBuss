@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+                doctype-system="http://www.w3c.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <html>
+        <head>
+            <title>TurboBuss</title>
+            <link rel="stylesheet" href="resources/css/bootstrap.css" type="text/css"/>
+            <link rel="stylesheet" href="resources/css/darkstrap.css" type="text/css"/>
+        </head>
+        <body>
+            <jsp:directive.include file="partials/nav.jspx" />
+            <section class="container">
+                <div class="row">
+                    
+                    <h1> Welcome to Turbo Buss </h1>
+                                        
+                </div>
+            </section>
+        </body>
+    </html>
+</jsp:root>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

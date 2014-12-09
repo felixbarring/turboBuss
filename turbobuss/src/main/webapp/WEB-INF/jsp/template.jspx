@@ -18,17 +18,26 @@
             <link rel="stylesheet" href="resources/css/darkstrap.css" type="text/css"/>
         </head>
         <body>
+                        
             <jsp:directive.include file="partials/nav.jspx" />
+
             <section class="container">
                 <div class="row">
-                    
-                    <jsp:include page="${content}.jspx" />
-                    
+
+                    <div class="container">
+                        <br></br> <br></br> <br></br>
+                        <jsp:include page="${content}.jspx" />
+                    </div>
                 </div>
             </section>
         </body>
     </html>
 </jsp:root>
+
+
+
+
+
 
 
 

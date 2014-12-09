@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface IBackend {
     
-    List<TimeTable> getTimeTables();
+    public List<String> getLineNames();
+    
+    public TimeTable getTimeTable(String line);
     
 }

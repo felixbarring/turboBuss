@@ -13,7 +13,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                  <a href="main?view=home" class="btn btn-default" role="button">Home</a>
-                <a href="main?view=timeTables" class="btn btn-default" role="button">Time Tables</a>
+                <a href="main?view=lineTables" class="btn btn-default" role="button">Time Tables</a>
                 <a href="main?view=travelPlanner" class="btn btn-default" role="button">Travel Planner</a>  
                 <a href="main?view=about" class="btn btn-default" role="button">About</a>
             </ul>

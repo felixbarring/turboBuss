@@ -30,6 +30,7 @@ public class TimeTable {
         return line.getName();
     }
     
+    
     public List<Stop> getStops(){
         return stops;
     }

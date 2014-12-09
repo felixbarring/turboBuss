@@ -23,7 +23,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         LOG.log(Level.INFO, "******* Putting Shop in application scope");
-        sce.getServletContext().setAttribute(Keys.BACKEND.toString(), Backend.newInstance());
+        sce.getServletContext().setAttribute(Keys.BACKEND.toString(), Backend.getInstance());
     }
 
     @Override

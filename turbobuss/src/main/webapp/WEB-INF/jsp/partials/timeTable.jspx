@@ -14,25 +14,25 @@
         
     </div>
     <section id="pageSection">
-        
         <div class="container">
-            <br></br> <br></br> <br></br>
+            Cake goes here
+
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Line</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="i" items="${PRODUCT_LIST.getStops()}">
+                    <c:forEach var="i" items="${TIME_TABLE.getStops()}">
                         <tr>
-                            <td>${i.getName()}</td>
+                            <td>${i}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
         </div>
-        
+            
         
     </section>
 </jsp:root>

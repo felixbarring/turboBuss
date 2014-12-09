@@ -53,26 +53,31 @@ public class MainServlet extends HttpServlet {
         if (view != null) {
             switch (view) {
                 case "home":
-                    content = "partials/home";
+                    content = "partials/" + view;
                     break;
-                case "timeTables":
-                    content = "partials/timeTables";
-                    
-                    List<TimeTable> tt = backend.getTimeTables();
-                    request.setAttribute(Keys.PRODUCT_LIST.toString(), tt.get(0));
+                case "lineTables":
+                    content = "partials/" + view;
+                    List<String> lines = backend.getLineNames();
+                    request.setAttribute(Keys.LINES.toString(), lines);
                     break;
                 case "travelPlanner":
-                    content = "partials/travelPlanner";
+                    content = "partials/" + view;
                     //request.setAttribute("cart", backend.getProductCatalogue().findAll());
                     break;
                 case "about":
-                    content = "partials/about";
+                    content = "partials/" + view;
+                    break;
+                case "timeTable":
+                    content = "partials/" + view;
+                    String line = request.getParameter("line");
+                    request.setAttribute(Keys.TIME_TABLE.toString(), backend.getTimeTable(line));
                     break;
                 default:
                     request.getRequestDispatcher("WEB-INF/jsp/main.jspx").forward(request, response);
                     break;
             }
         }
+        
         
         request.setAttribute("content", content);
         request.getRequestDispatcher("WEB-INF/jsp/template.jspx").forward(request, response);

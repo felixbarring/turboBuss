@@ -18,13 +18,13 @@ public enum Backend implements IBackend{
     private Backend(){
         timeTables = new ArrayList<>();
         
-        Stop langrevsvagen = new Stop("Långrevsvägen");
-        Stop hjalmar = new Stop("Hjalmar Brantings Platsen");
-        Stop lillabommen = new Stop("Lilla Bommen");
-        Stop nordstan = new Stop("Nordstaden");
-        Stop järntorget = new Stop("Järn Torget");
-        Stop vasa = new Stop("Vasa Platsen");
-        Stop chalmers = new Stop("Chalmers");
+        Stop langrevsvagen = Stop.createInstance("Långrevsvägen");
+        Stop hjalmar = Stop.createInstance("Hjalmar Brantings Platsen");
+        Stop lillabommen = Stop.createInstance("Lilla Bommen");
+        Stop nordstan = Stop.createInstance("Nordstaden");
+        Stop järntorget = Stop.createInstance("Järn Torget");
+        Stop vasa = Stop.createInstance("Vasa Platsen");
+        Stop chalmers = Stop.createInstance("Chalmers");
         
         Line rod = new Line("Röd");
         Line n3 = new Line("3");
@@ -37,6 +37,17 @@ public enum Backend implements IBackend{
         
         List<String> times = new ArrayList<>();
         times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        times.add("13:37");
+        
+        
         
         stopTimeMap.put(langrevsvagen, times);
         timeTables.add(new TimeTable(rod, stopTimeMap));

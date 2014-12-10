@@ -62,7 +62,6 @@ public class MainServlet extends HttpServlet {
                     break;
                 case "travelPlanner":
                     content = "partials/" + view;
-                    //request.setAttribute("cart", backend.getProductCatalogue().findAll());
                     break;
                 case "about":
                     content = "partials/" + view;
@@ -71,6 +70,7 @@ public class MainServlet extends HttpServlet {
                     content = "partials/" + view;
                     String line = request.getParameter("line");
                     request.setAttribute(Keys.TIME_TABLE.toString(), backend.getTimeTable(line));
+                    request.setAttribute(Keys.LINE.toString(), line);
                     break;
                 default:
                     request.getRequestDispatcher("WEB-INF/jsp/main.jspx").forward(request, response);

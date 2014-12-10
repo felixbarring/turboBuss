@@ -26,8 +26,8 @@
                 <tbody>
                     <c:forEach var="i" items="${LINES}">
                         <tr>
-                            <td>${i}</td>                            
-                            <td><a href="main?view=timeTable&amp;line=${i}"> Time Table </a></td>
+                            <td>${i.getName()}</td>                            
+                            <td><a href="main?view=timeTable&amp;line=${i.getId()}"> Time Table </a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

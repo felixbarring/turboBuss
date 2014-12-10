@@ -2,7 +2,7 @@
 package com.felix.turbobuss;
 
 import com.felix.turbobuss.simpleBackend.IBackend;
-import com.felix.turbobuss.simpleBackend.TimeTable;
+import com.felix.turbobuss.simpleBackend.Line;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -57,7 +57,7 @@ public class MainServlet extends HttpServlet {
                     break;
                 case "lineTables":
                     content = "partials/" + view;
-                    List<String> lines = backend.getLineNames();
+                    List<Line> lines = backend.getLines();
                     request.setAttribute(Keys.LINES.toString(), lines);
                     break;
                 case "travelPlanner":
@@ -68,9 +68,8 @@ public class MainServlet extends HttpServlet {
                     break;
                 case "timeTable":
                     content = "partials/" + view;
-                    String line = request.getParameter("line");
-                    request.setAttribute(Keys.TIME_TABLE.toString(), backend.getTimeTable(line));
-                    request.setAttribute(Keys.LINE.toString(), line);
+                    int line = Integer.parseInt(request.getParameter("line"));
+                    request.setAttribute(Keys.LINE.toString(), backend.getLine(line));
                     break;
                 default:
                     request.getRequestDispatcher("WEB-INF/jsp/main.jspx").forward(request, response);

@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.felix.turbobuss.simpleBackend;
 
 import java.util.List;
 
 /**
  *
- * @author fubuntu
+ * @author felix
  */
 public interface IBackend {
     
-    public List<String> getLineNames();
+    List<Line> getLines();
     
-    public TimeTable getTimeTable(String line);
+    Line getLine(int id);
     
 }

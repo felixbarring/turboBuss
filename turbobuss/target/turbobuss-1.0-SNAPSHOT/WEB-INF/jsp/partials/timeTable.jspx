@@ -15,10 +15,7 @@
     </div>
     <section id="pageSection">
         <div class="container">
-            <h3> Time tables for line ${LINE} </h3>
-            
-            
-            
+            <h3> Time tables for line ${LINE.getName()} </h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -26,11 +23,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="i" items="${TIME_TABLE.getStops()}">
+                    <c:forEach var="i" items="${LINE.getStops()}">
                         <tr>
                             <td>${i.getName()}</td>
-                            
-                            <c:forEach var="t" items="${TIME_TABLE.getArrivalTimes(i)}">
+                            <c:forEach var="t" items="${LINE.getArrivalTimes(i)}">
                                 <td>${t}</td>
                             </c:forEach>
                         </tr>

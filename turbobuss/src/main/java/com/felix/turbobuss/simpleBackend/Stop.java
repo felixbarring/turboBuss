@@ -11,10 +11,14 @@ import java.util.logging.Logger;
  */
 public class Stop {
     
-    private final String name;
-    private static List<String> takenNames = new ArrayList<>();
+    private final static List<String> takenNames = new ArrayList<>();
+    private static int idCounter = 0;
     
-    private Stop(String n){
+    private final int ID;
+    private final String name;
+
+    private Stop(int id, String n){
+        ID = id;
         name = n;
     }
     
@@ -27,7 +31,8 @@ public class Stop {
             }
             return null;
         } else {
-            return new Stop(n);
+            takenNames.add(n);
+            return new Stop(idCounter++, n);
         }
     }
     

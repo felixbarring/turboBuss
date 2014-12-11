@@ -24,8 +24,10 @@ public class Line {
     private final String nameLowerCase;
     private final LineType type;
     private final String typeLowerCase;
-    private final List<Stop> stops;
-    private final List<Vehicle> vehicles;
+    private final List<Stop> stopsAtoB;
+    private final List<Stop> stopsBtoA;
+    private final List<Vehicle> vehiclesAtoB;
+    private final List<Vehicle> vehiclesBtoA;
       
     private Line(int id, String n, LineType t, List<Stop> s){
         ID = id;
@@ -33,8 +35,10 @@ public class Line {
         nameLowerCase = name.toLowerCase();
         type = t;
         typeLowerCase = type.toString().toLowerCase();
-        stops = s;
-        vehicles = new ArrayList<>();
+        stopsAtoB = s;
+        stopsBtoA = reverse(stopsAtoB);
+        vehiclesAtoB = new ArrayList<>();
+        vehiclesBtoA = new ArrayList<>();
     }
     
     static Line createInstance(String n, LineType t, List<Stop> s){
@@ -51,9 +55,13 @@ public class Line {
         }
     }
     
-    void createAndAddVehicle(HashMap<Stop, ArrivalTime> a){
+    void createAndAddVehicle(HashMap<Stop, ArrivalTime> a, boolean fromAtoB){
         // Test so that the map is correct :3
-        vehicles.add(Vehicle.createInstance(a));
+        if (fromAtoB){
+            vehiclesAtoB.add(Vehicle.createInstance(a));
+        } else {
+            vehiclesBtoA.add(Vehicle.createInstance(a));
+        }
     }
     
     public int getId(){
@@ -68,14 +76,30 @@ public class Line {
         return type;
     }
     
-    
-    public List<Stop> getStops(){
-        return stops;
+    public List<Stop> getStopsAtoB(){
+        return stopsAtoB;
     }
     
-    public List<ArrivalTime> getArrivalTimes(Stop s){
+    public List<Stop> getStopsBtoA(){
+        return stopsBtoA;
+    }
+    
+    public List<ArrivalTime> getArrivalTimesAtoB(Stop s){
         List<ArrivalTime> arrivalTimes = new ArrayList<>();
-        for (Vehicle v : vehicles){
+        for (Vehicle v : vehiclesAtoB){
+            ArrivalTime at = v.getArrivalTime(s);
+            if (at == null){
+                // Crap
+            } else {
+                arrivalTimes.add(at);
+            }
+        }
+        return arrivalTimes;
+    }
+    
+    public List<ArrivalTime> getArrivalTimesBtoA(Stop s){
+        List<ArrivalTime> arrivalTimes = new ArrayList<>();
+        for (Vehicle v : vehiclesBtoA){
             ArrivalTime at = v.getArrivalTime(s);
             if (at == null){
                 // Crap
@@ -86,9 +110,25 @@ public class Line {
         return arrivalTimes;
     }
   
+    public Stop getA(){
+        return stopsAtoB.get(0);
+    }
+    
+    public Stop getB(){
+        return stopsBtoA.get(0);
+    }
+    
     public boolean acceptedByFilter(String filter){
         final String lcFilter = filter.toLowerCase();
         return nameLowerCase.equals(lcFilter) || typeLowerCase.equals(lcFilter);
+    }
+    
+    private List<Stop> reverse(List<Stop> list){
+        List<Stop> reversedList = new ArrayList<>();
+        for(int i = list.size()-1; i >= 0; i--){
+            reversedList.add(list.get(i));
+        }
+        return reversedList;
     }
     
 }

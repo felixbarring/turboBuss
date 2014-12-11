@@ -44,7 +44,7 @@ public enum Backend implements IBackend{
             v1.put(jarntorget, new ArrivalTime((short) (6 + i), (short) 20));
             v1.put(lillabommen, new ArrivalTime((short)(6 + i), (short) 25));
             v1.put(nordstan, new ArrivalTime((short) (6 + i), (short) 30));
-            rod.createAndAddVehicle(v1);       
+            rod.createAndAddVehicle(v1, true);       
         }
         
         allLines.add(rod);
@@ -58,7 +58,7 @@ public enum Backend implements IBackend{
             HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
             v1.put(jarntorget, new ArrivalTime((short)(6 + i), (short) 0));
             v1.put(vasa, new ArrivalTime((short) (6 + i), (short) 5));
-            n3.createAndAddVehicle(v1);       
+            n3.createAndAddVehicle(v1, true);       
         }
 
         allLines.add(n3);
@@ -72,7 +72,7 @@ public enum Backend implements IBackend{
             HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
             v1.put(nordstan, new ArrivalTime((short)(6 + i), (short) 0));
             v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 5));
-            n7.createAndAddVehicle(v1);       
+            n7.createAndAddVehicle(v1, true);       
         }
         
         allLines.add(n7);
@@ -88,7 +88,7 @@ public enum Backend implements IBackend{
             v1.put(hjalmar, new ArrivalTime((short)(6 + i), (short) 0));
             v1.put(nordstan, new ArrivalTime((short) (6 + i), (short) 5));
             v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 5));
-            n10.createAndAddVehicle(v1);       
+            n10.createAndAddVehicle(v1, true);       
         }
         
         allLines.add(n10);
@@ -106,7 +106,7 @@ public enum Backend implements IBackend{
             v1.put(nordstan, new ArrivalTime((short) (6 + i), (short) 5));
             v1.put(vasa, new ArrivalTime((short) (6 + i), (short) 5));
             v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 5));
-            n16.createAndAddVehicle(v1);       
+            n16.createAndAddVehicle(v1, true);       
         }
         
         allLines.add(n16);
@@ -120,7 +120,7 @@ public enum Backend implements IBackend{
             HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
             v1.put(langrevsvagen, new ArrivalTime((short)(6 + i), (short) 0));
             v1.put(hjalmar, new ArrivalTime((short) (6 + i), (short) 5));
-            n24.createAndAddVehicle(v1);       
+            n24.createAndAddVehicle(v1, true);       
         }
         
         allLines.add(n24);
@@ -130,10 +130,12 @@ public enum Backend implements IBackend{
         return INSTANCE;
     }
     
+    @Override
     public List<Line> getLines(){
         return allLines;
     }
     
+    @Override    
     public Line getLine(int id){
         for (Line l : allLines){
             if (l.getId() == id){

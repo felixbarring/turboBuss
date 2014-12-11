@@ -3,4 +3,22 @@
     
     <h1> Travel Planner </h1>
     
+    <section class="container">
+        <form action="main?action=filter" method="post">
+            <p> From </p>
+            <fieldset  class="form-group">
+                <input id="txtItem" type="text" name="from" maxlength="20"/>
+            </fieldset>
+            <p> To </p>
+            <fieldset  class="form-group">
+                <input id="txtItem" type="text" name="to" maxlength="20"/>
+            </fieldset>
+            <p> Latest Arrival Time </p>
+            <fieldset  class="form-group">
+                <input id="txtItem" type="text" name="arrival" maxlength="20"/>
+            </fieldset>
+            <input type="submit" value="Calculate Travel Plan"/>
+        </form>
+    </section>
+    
 </nav>

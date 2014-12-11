@@ -10,12 +10,11 @@
     <jsp:output doctype-root-element="HTML" 
                 doctype-system="about:legacy-compat" />
 
-    <div>
-        
-    </div>
+    <h1> Time Tables </h1>
+    
     <section id="pageSection">
         <div class="container">
-            <h3> Time tables for line ${LINE.getName()} </h3>
+            <h3> Time table for line ${LINE.getName()} </h3>
             <table class="table table-hover">
                 <thead>
                     <tr>

@@ -11,23 +11,33 @@ import java.util.logging.Logger;
  * @author felix
  */
 public class Line {
+    
+    public enum LineType{
+        BUSS, TRAM, BOAT
+    }
 
     private final static List<String> takenNames = new ArrayList<>();
     private static int idCounter = 0;
 
     private final int ID;
     private final String name;
+    private final String nameLowerCase;
+    private final LineType type;
+    private final String typeLowerCase;
     private final List<Stop> stops;
     private final List<Vehicle> vehicles;
       
-    private Line(int id, String n, List<Stop> s){
+    private Line(int id, String n, LineType t, List<Stop> s){
         ID = id;
         name = n;
+        nameLowerCase = name.toLowerCase();
+        type = t;
+        typeLowerCase = type.toString().toLowerCase();
         stops = s;
         vehicles = new ArrayList<>();
     }
     
-    public static Line createInstance(String n, List<Stop> s){
+    static Line createInstance(String n, LineType t, List<Stop> s){
         if (takenNames.contains(n)){
             try {
                 throw new Exception("Name already taken");
@@ -37,7 +47,7 @@ public class Line {
             return null;
         } else {
             takenNames.add(n);
-            return new Line(idCounter++, n, s);
+            return new Line(idCounter++, n, t, s);
         }
     }
     
@@ -46,13 +56,18 @@ public class Line {
         vehicles.add(Vehicle.createInstance(a));
     }
     
+    public int getId(){
+        return ID;
+    }
+    
     public String getName(){
         return name;
     }
     
-    public int getId(){
-        return ID;
+    public LineType getType(){
+        return type;
     }
+    
     
     public List<Stop> getStops(){
         return stops;
@@ -70,5 +85,10 @@ public class Line {
         }
         return arrivalTimes;
     }
-        
+  
+    public boolean acceptedByFilter(String filter){
+        final String lcFilter = filter.toLowerCase();
+        return nameLowerCase.equals(lcFilter) || typeLowerCase.equals(lcFilter);
+    }
+    
 }

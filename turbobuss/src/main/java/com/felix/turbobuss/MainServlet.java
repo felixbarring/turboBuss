@@ -4,6 +4,7 @@ package com.felix.turbobuss;
 import com.felix.turbobuss.simpleBackend.IBackend;
 import com.felix.turbobuss.simpleBackend.Line;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +33,6 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        
         IBackend backend = (IBackend) getServletContext().getAttribute(Keys.BACKEND.toString());
                 
         String action = request.getParameter("action");
@@ -42,8 +42,23 @@ public class MainServlet extends HttpServlet {
         // State changes and navigation
         if (action != null) {
             switch (action) {
-                case "addItem":  // A POST
-                  
+                case "filter":  // A POST
+                    String filter = request.getParameter("filt");
+                    content = "partials/lineTables";
+                    List<Line> lines = backend.getLines();
+                    
+                    // Filter here
+                    if (filter.equals("")){
+                        request.setAttribute(Keys.LINES.toString(), lines);
+                    } else {
+                        List<Line> newLines = new ArrayList<>();
+                        for (Line l : lines){
+                            if (l.acceptedByFilter(filter)){
+                                newLines.add(l);
+                            }
+                        }
+                        request.setAttribute(Keys.LINES.toString(), newLines);
+                    }
                 default:
                     ;
             }

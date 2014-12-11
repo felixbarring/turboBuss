@@ -36,40 +36,61 @@ public enum Backend implements IBackend{
         rodStops.add(jarntorget);
         rodStops.add(lillabommen);
         rodStops.add(nordstan);
-        Line rod = Line.createInstance("Röd", rodStops);
+        Line rod = Line.createInstance("Röd", Line.LineType.BUSS, rodStops);
         
-        HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
-        v1.put(langrevsvagen, new ArrivalTime((short)6, (short) 0));
-        v1.put(jarntorget, new ArrivalTime((short)7, (short) 0));
-        v1.put(lillabommen, new ArrivalTime((short)8, (short) 0));
-        v1.put(nordstan, new ArrivalTime((short)9, (short)0));
-        rod.createAndAddVehicle(v1);
+        for (int i = 0; i < 18; i++){
+            HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
+            v1.put(langrevsvagen, new ArrivalTime((short)(6 + i), (short) 0));
+            v1.put(jarntorget, new ArrivalTime((short) (6 + i), (short) 20));
+            v1.put(lillabommen, new ArrivalTime((short)(6 + i), (short) 25));
+            v1.put(nordstan, new ArrivalTime((short) (6 + i), (short) 30));
+            rod.createAndAddVehicle(v1);       
+        }
         
-        HashMap<Stop, ArrivalTime> v2 = new HashMap<>();
-        v2.put(langrevsvagen, new ArrivalTime((short) 7, (short) 0));
-        v2.put(jarntorget, new ArrivalTime((short) 8, (short) 0));
-        v2.put(lillabommen, new ArrivalTime((short) 9, (short) 0));
-        v2.put(nordstan, new ArrivalTime((short) 10, (short)0));
-        rod.createAndAddVehicle(v2);
         allLines.add(rod);
         
         List<Stop> n3Stops = new ArrayList<>();
         n3Stops.add(jarntorget);
         n3Stops.add(vasa);
-        Line n3 = Line.createInstance("3", n3Stops);
+        Line n3 = Line.createInstance("3", Line.LineType.TRAM, n3Stops);
+        
+        for (int i = 0; i < 18; i++){
+            HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
+            v1.put(jarntorget, new ArrivalTime((short)(6 + i), (short) 0));
+            v1.put(vasa, new ArrivalTime((short) (6 + i), (short) 5));
+            n3.createAndAddVehicle(v1);       
+        }
+
         allLines.add(n3);
         
         List<Stop> n7Stops = new ArrayList<>();
         n7Stops.add(nordstan);
         n7Stops.add(chalmers);
-        Line n7 = Line.createInstance("7", n7Stops);
+        Line n7 = Line.createInstance("7", Line.LineType.TRAM, n7Stops);
+        
+        for (int i = 0; i < 18; i++){
+            HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
+            v1.put(nordstan, new ArrivalTime((short)(6 + i), (short) 0));
+            v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 5));
+            n7.createAndAddVehicle(v1);       
+        }
+        
         allLines.add(n7);
         
         List<Stop> n10Stops = new ArrayList<>();
         n10Stops.add(hjalmar);
-        n10Stops.add(lillabommen);
+        n10Stops.add(nordstan);
         n10Stops.add(chalmers);
-        Line n10 = Line.createInstance("10", n10Stops);
+        Line n10 = Line.createInstance("10", Line.LineType.TRAM, n10Stops);
+        
+        for (int i = 0; i < 18; i++){
+            HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
+            v1.put(hjalmar, new ArrivalTime((short)(6 + i), (short) 0));
+            v1.put(nordstan, new ArrivalTime((short) (6 + i), (short) 5));
+            v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 5));
+            n10.createAndAddVehicle(v1);       
+        }
+        
         allLines.add(n10);
         
         List<Stop> n16Stops = new ArrayList<>();
@@ -77,13 +98,31 @@ public enum Backend implements IBackend{
         n16Stops.add(nordstan);
         n16Stops.add(vasa);
         n16Stops.add(chalmers);
-        Line n16 = Line.createInstance("16", n16Stops);
+        Line n16 = Line.createInstance("16", Line.LineType.BUSS, n16Stops);
+        
+        for (int i = 0; i < 18; i++){
+            HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
+            v1.put(hjalmar, new ArrivalTime((short)(6 + i), (short) 0));
+            v1.put(nordstan, new ArrivalTime((short) (6 + i), (short) 5));
+            v1.put(vasa, new ArrivalTime((short) (6 + i), (short) 5));
+            v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 5));
+            n16.createAndAddVehicle(v1);       
+        }
+        
         allLines.add(n16);
         
         List<Stop> n24Stops = new ArrayList<>();
         n24Stops.add(langrevsvagen);
         n24Stops.add(hjalmar);
-        Line n24 = Line.createInstance("24", n24Stops);
+        Line n24 = Line.createInstance("24", Line.LineType.BUSS, n24Stops);
+        
+        for (int i = 0; i < 18; i++){
+            HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
+            v1.put(langrevsvagen, new ArrivalTime((short)(6 + i), (short) 0));
+            v1.put(hjalmar, new ArrivalTime((short) (6 + i), (short) 5));
+            n24.createAndAddVehicle(v1);       
+        }
+        
         allLines.add(n24);
     }
     

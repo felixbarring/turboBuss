@@ -22,7 +22,7 @@ public class Stop {
         name = n;
     }
     
-    public static Stop createInstance(String n){
+    static Stop createInstance(String n){
         if (takenNames.contains(n)){
             try {
                 throw new Exception("Name already taken");

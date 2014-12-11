@@ -10,23 +10,33 @@
     <jsp:output doctype-root-element="HTML" 
                 doctype-system="about:legacy-compat" />
 
-    <div>
-        
-    </div>
+    <h1> Time Tables </h1>
     <section id="pageSection">
         <div class="container">
-            Search options goes here
+            
+
+            <section class="container">
+                <form action="main?action=filter" method="post">
+                    <fieldset  class="form-group">
+                        <label for="txtItem">Filter on name or type</label>
+                        <input id="txtItem" type="text" name="filt" maxlength="20"/>
+                        <input type="submit" value="Apply"/>
+                    </fieldset>
+                </form>
+            </section>
 
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Line</th>
+                        <th>Type</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="i" items="${LINES}">
                         <tr>
-                            <td>${i.getName()}</td>                            
+                            <td>${i.getName()}</td>         
+                            <td>${i.getType().toString()}</td>
                             <td><a href="main?view=timeTable&amp;line=${i.getId()}"> Time Table </a></td>
                         </tr>
                     </c:forEach>

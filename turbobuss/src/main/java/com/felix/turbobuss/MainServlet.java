@@ -91,8 +91,6 @@ public class MainServlet extends HttpServlet {
                     break;
             }
         }
-        
-        
         request.setAttribute("content", content);
         request.getRequestDispatcher("WEB-INF/jsp/template.jspx").forward(request, response);
         

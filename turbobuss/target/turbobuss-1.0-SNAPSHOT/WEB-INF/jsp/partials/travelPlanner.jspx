@@ -13,7 +13,7 @@
             <fieldset  class="form-group">
                 <input id="txtItem" type="text" name="to" maxlength="20"/>
             </fieldset>
-            <p> Latest Arrival Time </p>
+            <p> Earliest Start Time </p>
             <fieldset  class="form-group">
                 <input id="txtItem" type="text" name="arrival" maxlength="20"/>
             </fieldset>

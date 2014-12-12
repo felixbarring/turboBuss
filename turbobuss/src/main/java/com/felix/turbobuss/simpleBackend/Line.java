@@ -131,4 +131,24 @@ public class Line {
         return reversedList;
     }
     
+    public boolean travelsTo(Stop s){
+        return stopsAtoB.contains(s);
+    }
+    
+    public List<Stop> getConnecteStops(Stop s){
+        List<Stop> result = new ArrayList<>();
+        int size = stopsAtoB.size();
+        for (int i = 0; i < size; i++){
+            if (stopsAtoB.get(i).equals(s)){
+                if (i-1 >= 0){
+                    result.add(stopsAtoB.get(i-1));
+                } 
+                if (i+1 < size){
+                    result.add(stopsAtoB.get(i+1));
+                }
+            }
+        }
+        return result;
+    }
+    
 }

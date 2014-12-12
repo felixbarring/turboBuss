@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * @author felix
- */
+ */   
 public class Vehicle {
     
     private static int idCounter = 0;

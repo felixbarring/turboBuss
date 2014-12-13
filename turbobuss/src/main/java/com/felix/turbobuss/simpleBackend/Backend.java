@@ -1,7 +1,6 @@
 
 package com.felix.turbobuss.simpleBackend;
 
-import com.felix.turbobuss.travelPlanner.Graph;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -194,10 +193,16 @@ public enum Backend implements IBackend{
         }
         
         allLines.add(n24);
+        
+        for(Stop s : allStops){
+            s.addLines(allLines);
+            s.connectToNeighbors();
+        }
+
+        
     }
     
     public static IBackend getInstance(){
-        Graph.getInstance();
         return INSTANCE;
     }
     
@@ -218,6 +223,11 @@ public enum Backend implements IBackend{
     
     public List<Stop> getStops(){
         return allStops;
+    }
+    
+    @Override
+    public void copmutePath(){
+        
     }
  
     

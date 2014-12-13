@@ -31,7 +31,14 @@ public class ArrivalTime {
         } else {
             strM = "" + minute;
         }
-        
+    }
+    
+    public boolean isBiggerThan(ArrivalTime that){
+        return this.hour > that.hour || this.minute >= that.minute;
+    }
+    
+    public boolean isSmallerThan(ArrivalTime that){
+        return this.hour < that.hour || this.minute <= that.minute;
     }
     
     @Override

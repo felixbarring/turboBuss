@@ -43,6 +43,7 @@ public class MainServlet extends HttpServlet {
         if (action != null) {
             switch (action) {
                 case "filter":  // A POST
+
                     String filter = request.getParameter("filt");
                     content = "partials/lineTables";
                     List<Line> lines = backend.getLines();
@@ -59,6 +60,15 @@ public class MainServlet extends HttpServlet {
                         }
                         request.setAttribute(Keys.LINES.toString(), newLines);
                     }
+                case "plan":
+                    String from = request.getParameter("filt");
+                    String to = request.getParameter("filt");
+                    String arrival = request.getParameter("filt");
+                    
+                    content = "partials/travelPlanner";
+                    
+                    backend.copmutePath();
+                    
                 default:
                     ;
             }

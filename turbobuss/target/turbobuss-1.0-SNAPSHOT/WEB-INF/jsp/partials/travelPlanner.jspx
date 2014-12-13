@@ -4,7 +4,17 @@
     <h1> Travel Planner </h1>
     
     <section class="container">
-        <form action="main?action=filter" method="post">
+        <form action="main?action=plan" method="post">
+            <fieldset  class="form-group">
+                <label for="txtItem">Filter on name or type</label>
+                <input id="txtItem" type="text" name="filt" maxlength="20"/>
+                <input type="submit" value="Apply"/>
+            </fieldset>
+        </form>
+    </section>
+    
+    <section class="container">
+        <form action="main?action=plan" method="post">
             <p> From </p>
             <fieldset  class="form-group">
                 <input id="txtItem" type="text" name="from" maxlength="20"/>

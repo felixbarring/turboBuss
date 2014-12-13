@@ -2,9 +2,7 @@ com/felix/turbobuss/simpleBackend/Stop.class
 com/felix/turbobuss/simpleBackend/Line$LineType.class
 com/felix/turbobuss/simpleBackend/IBackend.class
 com/felix/turbobuss/simpleBackend/Line.class
-com/felix/turbobuss/travelPlanner/Node.class
 com/felix/turbobuss/MainServlet.class
-com/felix/turbobuss/travelPlanner/Graph.class
 com/felix/turbobuss/Listener.class
 com/felix/turbobuss/Keys.class
 com/felix/turbobuss/simpleBackend/Backend.class

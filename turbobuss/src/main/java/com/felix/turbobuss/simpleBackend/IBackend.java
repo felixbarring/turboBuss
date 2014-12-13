@@ -13,4 +13,6 @@ public interface IBackend {
     
     Line getLine(int id);
     
+    void copmutePath();
+    
 }

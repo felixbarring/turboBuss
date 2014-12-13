@@ -34,11 +34,11 @@ public class ArrivalTime {
     }
     
     public boolean isBiggerThan(ArrivalTime that){
-        return this.hour > that.hour || this.minute >= that.minute;
+        return this.hour * 60 + this.minute > that.hour * 60 + that.minute;
     }
     
     public boolean isSmallerThan(ArrivalTime that){
-        return this.hour < that.hour || this.minute <= that.minute;
+        return this.hour * 60 + this.minute < that.hour * 60 + that.minute;
     }
     
     @Override

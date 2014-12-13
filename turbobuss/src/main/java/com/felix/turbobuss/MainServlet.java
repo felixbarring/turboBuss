@@ -60,6 +60,7 @@ public class MainServlet extends HttpServlet {
                         }
                         request.setAttribute(Keys.LINES.toString(), newLines);
                     }
+                    break;
                 case "plan":
                     String from = request.getParameter("filt");
                     String to = request.getParameter("filt");

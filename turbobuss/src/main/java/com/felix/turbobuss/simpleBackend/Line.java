@@ -152,63 +152,57 @@ public class Line {
         return result;
     }
     
+    
+    
+    
+    private ArrivalTime helper(List<Vehicle> vehicles, ArrivalTime laterThan, Stop start, Stop end){
+        
+        // Find all vehicles that leaves from the start after 'latherThan'
+        List<Vehicle> candidates = new ArrayList<>();
+        for (Vehicle v : vehicles){
+            if (v.getArrivalTime(start).isBiggerThan(laterThan)){
+                candidates.add(v);
+                //System.out.println(" --- Vehicle with start time " + v.getArrivalTime(start));
+            }
+        }
+
+        // For these vehicles, find the one that arrive first at the end.
+        // This is the optimal vehicle
+        ArrivalTime optimalTime = null;
+        for(Vehicle v : candidates){
+            if (optimalTime == null){
+                optimalTime = v.getArrivalTime(end);
+                //System.out.println("Optimal time is now = " + optimalTime);
+            } else {
+                if(v.getArrivalTime(end).isSmallerThan(optimalTime)){
+                    optimalTime = v.getArrivalTime(end);
+                    //System.out.println("Optimal time is now = " + optimalTime);
+                }
+            }
+        }
+        //System.out.println("Final optimal time is = " + optimalTime);
+        return optimalTime;
+    }
+    
+    
     public ArrivalTime getBestArrivalTime(ArrivalTime laterThan, Stop start, Stop end){
         
         final int size = stopsAtoB.size();
         for(int i = 0; i < size; i++){
             if(stopsAtoB.get(i).equals(start)){
-                if(i+1 < size){
-                    if(stopsAtoB.get(i+1).equals(end)){
-                        // Find all vehicles that leaves from the start after 'latherThan'
-                        List<Vehicle> candidates = new ArrayList<>();
-                        for (Vehicle v : vehiclesAtoB){
-                            if (v.getArrivalTime(start).isBiggerThan(laterThan)){
-                                candidates.add(v);
-                            }
-                        }
-                        
-                        // For these vehicles, find the one that arrive first at the end.
-                        // This is the optimal vehicle
-                        ArrivalTime optimalTime = null;
-                        for(Vehicle v : candidates){
-                            if (optimalTime == null){
-                                optimalTime = v.getArrivalTime(end);
-                            } else {
-                                if(v.getArrivalTime(end).isSmallerThan(optimalTime)){
-                                    optimalTime = v.getArrivalTime(end);
-                                }
-                            }
-                        }
-                        return optimalTime;
-                    }
-                } else if (i-1 >= 0){
-                     if(stopsBtoA.get(i+1).equals(end)){
-                        // Find all vehicles that leaves from the start after 'latherThan'
-                        List<Vehicle> candidates = new ArrayList<>();
-                        for (Vehicle v : vehiclesBtoA){
-                            if (v.getArrivalTime(start).isBiggerThan(laterThan)){
-                                candidates.add(v);
-                            }
-                        }
-                        
-                        // For these vehicles, find the one that arrive first at the end.
-                        // This is the optimal vehicle
-                        ArrivalTime optimalTime = null;
-                        for(Vehicle v : candidates){
-                            if (optimalTime == null){
-                                optimalTime = v.getArrivalTime(end);
-                            } else {
-                                if(v.getArrivalTime(end).isSmallerThan(optimalTime)){
-                                    optimalTime = v.getArrivalTime(end);
-                                }
-                            }
-                        }
-                        return optimalTime;
-                    }
+                //System.out.println("HI :-)");
+                if(i+1 < size && stopsAtoB.get(i+1).equals(end)){
+                    //System.out.println("i+1");
+                    return helper(vehiclesAtoB, laterThan, start, end);
+                } else if (i-1 >= 0 && stopsAtoB.get(i-1).equals(end)){
+                    //System.out.println("i-1");
+                    return helper(vehiclesBtoA, laterThan, start, end);
                 }
             }
         }
+        //System.out.println("OH NOO MORE PROBLEM");
         return null;
+        
     }
     
 }

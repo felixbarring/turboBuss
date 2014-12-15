@@ -8,8 +8,7 @@ import java.util.Queue;
 
 
 /**
- *
- * @author fubuntu
+ * @author felix
  */
 public class Graph {
     
@@ -42,7 +41,7 @@ public class Graph {
             }
         }
         
-        //System.out.println(end.getBestTime());
+        
         
     }
     

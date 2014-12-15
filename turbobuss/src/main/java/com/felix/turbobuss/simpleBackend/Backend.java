@@ -13,6 +13,7 @@ public enum Backend implements IBackend{
     
     private final List<Stop> allStops = new ArrayList<>();
     private final List<Line> allLines = new ArrayList<>();
+    private final List<String> stopNames = new ArrayList<>();
  
     private Backend(){
         Stop langrevsvagen = Stop.createInstance("Långrevsvägen");
@@ -198,6 +199,10 @@ public enum Backend implements IBackend{
             s.addLines(allLines);
             s.connectToNeighbors();
         }
+        
+        for(Stop s : allStops){
+            stopNames.add(s.getName());
+        }
 
         
     }
@@ -226,8 +231,36 @@ public enum Backend implements IBackend{
     }
     
     @Override
-    public void copmutePath(){
-        Graph.findBestRoute(new ArrivalTime((short)13, (short) 37), allStops.get(0), allStops.get(allStops.size() - 1));
+    public List<String> getStopNames(){
+        return stopNames;
+    }
+    
+    @Override
+    public void copmutePath(String startName, String endName){
+        Stop start = null;
+        for(Stop s : allStops){
+            if(s.nameMatch(startName)){
+                System.out.println("The start matches :-)");
+                start = s;
+            }
+            
+        }
+        Stop end = null;
+        for(Stop s : allStops){
+            if(s.nameMatch(endName)){
+                System.out.println("The end matches :-)");
+                start = s;
+            }
+        }
+        
+        if(start == null || end == null){
+            // O Shet
+        }
+
+        Graph.findBestRoute(new ArrivalTime((short)13, (short) 37), start, end);
+        
+        
+        
     }
  
     

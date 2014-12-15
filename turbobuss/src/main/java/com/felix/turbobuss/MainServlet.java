@@ -43,11 +43,8 @@ public class MainServlet extends HttpServlet {
         if (action != null) {
             switch (action) {
                 case "filter":  // A POST
-
                     String filter = request.getParameter("filt");
-                    content = "partials/lineTables";
                     List<Line> lines = backend.getLines();
-                    
                     // Filter here
                     if (filter.equals("")){
                         request.setAttribute(Keys.LINES.toString(), lines);
@@ -60,16 +57,14 @@ public class MainServlet extends HttpServlet {
                         }
                         request.setAttribute(Keys.LINES.toString(), newLines);
                     }
+                    view = "lineTables";
                     break;
                 case "plan":
-                    String from = request.getParameter("filt");
-                    String to = request.getParameter("filt");
-                    String arrival = request.getParameter("filt");
-                    
-                    content = "partials/travelPlanner";
-                    
-                    backend.copmutePath();
-                    
+                    String from = request.getParameter("from");
+                    String to = request.getParameter("to");
+                    String arrival = request.getParameter("arrival");
+                    backend.copmutePath(from, to);
+                    view = "travelPlanner";
                 default:
                     ;
             }
@@ -87,6 +82,7 @@ public class MainServlet extends HttpServlet {
                     request.setAttribute(Keys.LINES.toString(), lines);
                     break;
                 case "travelPlanner":
+                    request.setAttribute(Keys.STOP_NAMES.toString(), backend.getStopNames());
                     content = "partials/" + view;
                     break;
                 case "about":

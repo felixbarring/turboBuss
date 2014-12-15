@@ -6,6 +6,5 @@ public enum Keys {
     LINES,  
     LINE,
     TIME_TABLE,
-    CURRENT_PAGE,  // Needed for navigation
-    PAGE_SIZE, 
+    STOP_NAMES,
 }

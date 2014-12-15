@@ -13,6 +13,8 @@ public interface IBackend {
     
     Line getLine(int id);
     
-    void copmutePath();
+    void copmutePath(String startName, String endName);
+    
+    List<String> getStopNames();
     
 }

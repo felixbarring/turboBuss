@@ -34,7 +34,6 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         LOG.log(Level.INFO, "******* Session Created {0}", se.getSession());
-        se.getSession().setAttribute(Keys.PAGE_SIZE.toString(), 4); // Hardcoded
     }
 
     @Override

@@ -16,6 +16,7 @@ public class Stop implements Comparable<Stop>{
     
     private final int ID;
     private final String name;
+    private final String nameLowerCase;
     
     // Node stuff
     private final List<Line> lines = new ArrayList<>();
@@ -24,11 +25,13 @@ public class Stop implements Comparable<Stop>{
     
     
     private ArrivalTime bestTime;
+    private Line bestLine;
     private Stop previous;
 
     private Stop(int id, String n){
         ID = id;
         name = n;
+        nameLowerCase = name.toLowerCase();
     }
     
     static Stop createInstance(String n){
@@ -75,9 +78,11 @@ public class Stop implements Comparable<Stop>{
         bestTime = time;
     }
     
-    void offerTime(ArrivalTime at){
+    void offerTime(ArrivalTime at, Line l, Stop s){
         if(bestTime == null || at.isSmallerThan(this.bestTime)){
             this.bestTime = at;
+            bestLine = l;
+            previous = s;
         }
     }
     
@@ -97,10 +102,27 @@ public class Stop implements Comparable<Stop>{
         for(int i = 0; i < connectedStops.size(); i++){
             if(connectedStops.get(i).equals(s)){
                 ArrivalTime at = stopConnectedBy.get(i).getBestArrivalTime(this.bestTime, this, s);
-                s.offerTime(at);
+                s.offerTime(at, stopConnectedBy.get(i), this);
                 break;
             }
         }
+    }
+    
+    boolean nameMatch(String str){
+        System.out.println(str + " matches " + nameLowerCase + " = " + str.toLowerCase().equals(nameLowerCase));
+        return str.toLowerCase().equals(nameLowerCase);
+    }
+    
+    public Stop getPreviouse(){
+        return previous;
+    }
+    
+    public Line getLineToPrevous(){
+        return bestLine;
+    }
+    
+    public ArrivalTime getBestArrivalTime(){
+        return bestTime;
     }
     
     @Override
@@ -108,6 +130,12 @@ public class Stop implements Comparable<Stop>{
         return this == o;
     }
     
+    /**
+     * Does not return 0 when the two objects are equal
+     * 
+     * @param that
+     * @return 
+     */
     @Override
     public int compareTo(Stop that) {
         if(this.bestTime == null ){

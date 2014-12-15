@@ -4,7 +4,6 @@ package com.felix.turbobuss.simpleBackend;
 import java.util.List;
 
 /**
- *
  * @author felix
  */
 public interface IBackend {
@@ -13,7 +12,7 @@ public interface IBackend {
     
     Line getLine(int id);
     
-    void copmutePath(String startName, String endName);
+    List<TravelRoute> copmutePath(String startName, String endName);
     
     List<String> getStopNames();
     

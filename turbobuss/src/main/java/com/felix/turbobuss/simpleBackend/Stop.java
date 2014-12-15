@@ -109,7 +109,7 @@ public class Stop implements Comparable<Stop>{
     }
     
     boolean nameMatch(String str){
-        System.out.println(str + " matches " + nameLowerCase + " = " + str.toLowerCase().equals(nameLowerCase));
+        //System.out.println(str + " matches " + nameLowerCase + " = " + str.toLowerCase().equals(nameLowerCase));
         return str.toLowerCase().equals(nameLowerCase);
     }
     
@@ -149,5 +149,6 @@ public class Stop implements Comparable<Stop>{
         }
     }
 
+    
  }
     

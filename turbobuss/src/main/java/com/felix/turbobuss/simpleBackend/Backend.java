@@ -236,30 +236,41 @@ public enum Backend implements IBackend{
     }
     
     @Override
-    public void copmutePath(String startName, String endName){
+    public List<TravelRoute> copmutePath(String startName, String endName){
+        
+        //System.out.println("Start Name - " + startName);
+        //System.out.println("End Name - " + endName);
+        
         Stop start = null;
         for(Stop s : allStops){
             if(s.nameMatch(startName)){
-                System.out.println("The start matches :-)");
+                //System.out.println("The start matches :-)");
                 start = s;
+                break;
             }
             
         }
         Stop end = null;
         for(Stop s : allStops){
             if(s.nameMatch(endName)){
-                System.out.println("The end matches :-)");
-                start = s;
+                //System.out.println("The end matches :-)");
+                end = s;
+                break;
             }
         }
         
         if(start == null || end == null){
-            // O Shet
+            System.out.println(" ------------------------------------------------------ PROBLEMS");
         }
 
-        Graph.findBestRoute(new ArrivalTime((short)13, (short) 37), start, end);
+        for(TravelRoute tr : Dijkstra.findBestRoute(new ArrivalTime((short)13, (short) 37), start, end)){
+            System.out.println("Stop - " + tr.getStop());
+            System.out.println("Line - " + tr.getLine());
+            System.out.println("Time - " + tr.getArrivalTime());
+        }
+        
+        return Dijkstra.findBestRoute(new ArrivalTime((short)13, (short) 37), start, end);
         
     }
- 
     
 }

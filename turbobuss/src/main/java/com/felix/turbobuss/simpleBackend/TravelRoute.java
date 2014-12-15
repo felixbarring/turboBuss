@@ -24,7 +24,7 @@ public class TravelRoute {
         return stop;
     }
     
-    public String arrivalTime(){
+    public String getArrivalTime(){
         return arrivalTime;
     }
     

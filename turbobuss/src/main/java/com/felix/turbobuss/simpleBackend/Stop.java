@@ -62,12 +62,8 @@ public class Stop implements Comparable<Stop>{
     }
     
     void connectToNeighbors(){
-        //System.out.println("--");
-        //System.out.println("Stop " + name);
         for(Line l : lines){
-            //System.out.println("---Line " + l.getName());
             for(Stop s : l.getConnectedStops(this)){
-                //System.out.println("------Connected stop " + s.getName());
                 connectedStops.add(s);
                 stopConnectedBy.add(l);
             }
@@ -79,8 +75,8 @@ public class Stop implements Comparable<Stop>{
     }
     
     void offerTime(ArrivalTime at, Line l, Stop s){
-        if(bestTime == null || at.isSmallerThan(this.bestTime)){
-            this.bestTime = at;
+        if(bestTime == null || at.isSmallerThan(bestTime)){
+            bestTime = at;
             bestLine = l;
             previous = s;
         }
@@ -109,7 +105,6 @@ public class Stop implements Comparable<Stop>{
     }
     
     boolean nameMatch(String str){
-        //System.out.println(str + " matches " + nameLowerCase + " = " + str.toLowerCase().equals(nameLowerCase));
         return str.toLowerCase().equals(nameLowerCase);
     }
     

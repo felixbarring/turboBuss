@@ -1,4 +1,4 @@
-package com.felix.turbobuss;
+package com.felix.turbobuss.controll;
 
 
 public enum Keys {    
@@ -7,4 +7,5 @@ public enum Keys {
     LINE,
     TIME_TABLE,
     STOP_NAMES,
+    PATH
 }

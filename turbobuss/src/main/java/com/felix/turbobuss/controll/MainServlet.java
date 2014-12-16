@@ -1,5 +1,5 @@
 
-package com.felix.turbobuss;
+package com.felix.turbobuss.controll;
 
 import com.felix.turbobuss.simpleBackend.IBackend;
 import com.felix.turbobuss.simpleBackend.Line;
@@ -57,14 +57,16 @@ public class MainServlet extends HttpServlet {
                         }
                         request.setAttribute(Keys.LINES.toString(), newLines);
                     }
-                    view = "lineTables";
+                    content = "partials/lineTables";
+                    view = null;
                     break;
                 case "plan":
                     String from = request.getParameter("from");
                     String to = request.getParameter("to");
                     String arrival = request.getParameter("arrival");
-                    backend.copmutePath(from, to);
-                    view = "travelPlanner";
+                    request.setAttribute(Keys.PATH.toString(), backend.copmutePath(from, to));
+                    content = "partials/travelRoute";
+                    break;
                 default:
                     ;
             }

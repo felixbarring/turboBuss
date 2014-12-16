@@ -28,11 +28,9 @@ public class Dijkstra {
         
         while(!undetermined.isEmpty()){
             Stop stop = undetermined.poll();
-            //System.out.println("Best time for " + stop.getName() + " has been detemined with best time " + stop.getBestTime());
             for(Stop s : stop.getConnectedStops()){
                 if(undetermined.contains(s)){
                     undetermined.remove(s);
-                    //System.out.println("--- Stop " + s.getName() + " is connected with " + stop.getName());
                     stop.computeShortestPathTo(s);
                     undetermined.add(s);
                 }
@@ -50,7 +48,6 @@ public class Dijkstra {
         }
         route.add(new TravelRoute(previousLine, start.getName(), start.getBestArrivalTime().toString()));
         reverse(route);
-        
         return route;
     }
     

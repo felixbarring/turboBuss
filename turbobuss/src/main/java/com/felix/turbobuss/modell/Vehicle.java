@@ -1,5 +1,5 @@
 
-package com.felix.turbobuss.simpleBackend;
+package com.felix.turbobuss.modell;
 
 import java.util.HashMap;
 import java.util.Map;

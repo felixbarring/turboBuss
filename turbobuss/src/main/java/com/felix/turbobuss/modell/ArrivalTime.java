@@ -1,8 +1,13 @@
 
-package com.felix.turbobuss.simpleBackend;
+package com.felix.turbobuss.modell;
 
 /**
  * @author felix
+ */
+
+/**
+ * Simple class that represents a time in hour and minutes.
+ * It can be compared and has a pretty toString implementation.
  */
 public class ArrivalTime {
     
@@ -33,10 +38,19 @@ public class ArrivalTime {
         }
     }
     
+    /**
+     * @param that The other ArrivalTime instance that will be compared
+     * @return true if this instance is later on the day, else false
+     */
     public boolean isBiggerThan(ArrivalTime that){
         return this.hour * 60 + this.minute > that.hour * 60 + that.minute;
     }
     
+    /**
+     * 
+     * @param that The other ArrivalTime instance that will be compared
+     * @return true if this instance is earlier on the day, else false
+     */
     public boolean isSmallerThan(ArrivalTime that){
         return this.hour * 60 + this.minute < that.hour * 60 + that.minute;
     }

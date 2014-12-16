@@ -1,6 +1,6 @@
 package com.felix.turbobuss.controll;
 
-import com.felix.turbobuss.simpleBackend.Backend;
+import com.felix.turbobuss.modell.Backend;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
@@ -22,7 +22,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     // I.e. application starts
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        LOG.log(Level.INFO, "******* Putting Shop in application scope");
+        LOG.log(Level.INFO, "*** Loading Backend");
         sce.getServletContext().setAttribute(Keys.BACKEND.toString(), Backend.getInstance());
     }
 

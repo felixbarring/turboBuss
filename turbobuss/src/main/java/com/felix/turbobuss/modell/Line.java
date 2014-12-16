@@ -1,5 +1,5 @@
 
-package com.felix.turbobuss.simpleBackend;
+package com.felix.turbobuss.modell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -111,13 +111,6 @@ public class Line {
         return arrivalTimes;
     }
   
-    public Stop getA(){
-        return stopsAtoB.get(0);
-    }
-    
-    public Stop getB(){
-        return stopsBtoA.get(0);
-    }
     
     public boolean acceptedByFilter(String filter){
         final String lcFilter = filter.toLowerCase();
@@ -153,14 +146,19 @@ public class Line {
     }
      
     private ArrivalTime helper(List<Vehicle> vehicles, ArrivalTime laterThan, Stop start, Stop end){
-        
         // Find all vehicles that leaves from the start after 'latherThan'
         List<Vehicle> candidates = new ArrayList<>();
         for (Vehicle v : vehicles){
+            System.out.println(" --- " + v.getArrivalTime(start) );
             if (v.getArrivalTime(start).isBiggerThan(laterThan)){
                 candidates.add(v);
             }
         }
+        if(candidates.isEmpty()){
+            return null;
+        }
+        
+        System.out.println("Candidate Size" + candidates.size());
 
         // For these vehicles, find the one that arrive first at the end.
         // This is the optimal vehicle
@@ -191,7 +189,6 @@ public class Line {
             }
         }
         return null;
-        
     }
     
 }

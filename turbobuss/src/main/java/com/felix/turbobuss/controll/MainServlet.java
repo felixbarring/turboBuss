@@ -1,8 +1,8 @@
 
 package com.felix.turbobuss.controll;
 
-import com.felix.turbobuss.simpleBackend.IBackend;
-import com.felix.turbobuss.simpleBackend.Line;
+import com.felix.turbobuss.modell.IBackend;
+import com.felix.turbobuss.modell.Line;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

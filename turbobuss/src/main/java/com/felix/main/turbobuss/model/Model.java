@@ -1,8 +1,8 @@
 
-package com.felix.turbobuss.modell;
+package com.felix.main.turbobuss.model;
 
-import com.felix.data.LineData;
-import com.felix.data.TravelRoute;
+import com.felix.main.data.LineData;
+import com.felix.main.data.TravelRoute;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * @author felix
  */
-public enum Backend implements IBackend{
+public enum Model implements IModel{
     INSTANCE;
     
     private final List<Stop> allStops = new ArrayList<>();
@@ -21,7 +21,7 @@ public enum Backend implements IBackend{
     
     private final List<LineData> lineData = new ArrayList<>();
  
-    private Backend(){
+    private Model(){
         Stop langrevsvagen = Stop.createInstance("Langrevsvagen");
         Stop hjalmar = Stop.createInstance("Hjalmar Brantings Platsen");
         Stop lillabommen = Stop.createInstance("Lilla Bommen");
@@ -90,21 +90,17 @@ public enum Backend implements IBackend{
         n6Stops.add(chalmers);
         Line n6 = Line.createInstance("6", Line.LineType.TRAM, n6Stops);
         
-        for (int i = 0; i < 11; i++){
+        for (int i = 0; i < 4; i++){
             HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
             v1.put(jarntorget, new ArrivalTime((short)(6 + i), (short) 0));
             v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 5));
-            //v1.put(jarntorget, new ArrivalTime((short)(6 + i), (short) 23));
-            //v1.put(chalmers, new ArrivalTime((short) (6 + i), (short) 28));
             n6.createAndAddVehicle(v1, true);       
         }
         
-        for (int i = 0; i < 11; i++){
+        for (int i = 0; i < 4; i++){
             HashMap<Stop, ArrivalTime> v1 = new HashMap<>();
             v1.put(chalmers, new ArrivalTime((short)(6 + i), (short) 0));
-            v1.put(jarntorget, new ArrivalTime((short) (6 + i), (short) 5));
-            //v1.put(chalmers, new ArrivalTime((short)(6 + i), (short) 23));
-            //v1.put(jarntorget, new ArrivalTime((short) (6 + i), (short) 28));
+            v1.put(jarntorget, new ArrivalTime((short) (6 + i), (short) 13));
             n6.createAndAddVehicle(v1, false);       
         }
         allLines.add(n6);
@@ -242,7 +238,7 @@ public enum Backend implements IBackend{
 
     }
     
-    public static IBackend getInstance(){
+    public static IModel getInstance(){
         return INSTANCE;
     }
     
@@ -271,9 +267,7 @@ public enum Backend implements IBackend{
     }
     
     @Override
-    public List<TravelRoute> copmutePath(String startName, String endName){
-        
-        
+    public List<TravelRoute> copmutePath(String time, String startName, String endName){
         Stop start = null;
         for(Stop s : allStops){
             if(s.nameMatch(startName)){
@@ -288,16 +282,19 @@ public enum Backend implements IBackend{
                 break;
             }
         }
-        
-        if(start == null || end == null){
-            try {
-                throw new Exception("The name privided are not correct");
-            } catch (Exception ex) {
-                Logger.getLogger(Backend.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(start == null || end == null || 
+            time.charAt(0) < '0'|| time.charAt(0) > '9' ||
+            time.charAt(1) < '0'|| time.charAt(1) > '9' ||
+            time.charAt(3) < '0'|| time.charAt(4) > '9' ||
+            time.charAt(3) < '0'|| time.charAt(4) > '9')
+        {    
+            return null;
         }
+            
+        short hour = Short.parseShort(time.substring(0, 2));
+        short minute = Short.parseShort(time.substring(3, 5));
         
-        return Dijkstra.findBestRoute(new ArrivalTime((short)13, (short) 37), start, end);
+        return Dijkstra.findBestRoute(new ArrivalTime((short)hour, (short) minute), start, end);
     }
     
 }

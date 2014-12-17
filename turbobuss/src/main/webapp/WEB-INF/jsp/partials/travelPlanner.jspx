@@ -29,10 +29,8 @@
                         </c:forEach>
                     </select>
                     <p> Earliest Start Time </p>
-                    <input id="txtItem" type="text" name="arrival" maxlength="20"/>
+                    <input id="txtItem" type="text" name="arrival" maxlength="5" value="13:37"/>
                     <input type="submit" value="Calculate Travel Plan"/>
-
-
                 </fieldset>
             </form>
         </section>

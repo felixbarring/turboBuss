@@ -1,6 +1,6 @@
-package com.felix.turbobuss.modell;
+package com.felix.main.turbobuss.model;
 
-import com.felix.data.TravelRoute;
+import com.felix.main.data.TravelRoute;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -13,7 +13,7 @@ public class Dijkstra {
 
     public static List<TravelRoute> findBestRoute(ArrivalTime startTime, Stop start, Stop end) {
         
-        List<Stop> stops = Backend.INSTANCE.getStops();
+        List<Stop> stops = Model.INSTANCE.getStops();
         for (Stop s : stops) {
             s.setBetsTime(null);
             s.setPrevious(null);

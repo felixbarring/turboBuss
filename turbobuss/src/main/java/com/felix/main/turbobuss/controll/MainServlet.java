@@ -1,9 +1,9 @@
 
-package com.felix.turbobuss.controll;
+package com.felix.main.turbobuss.controll;
 
-import com.felix.data.LineData;
-import com.felix.turbobuss.modell.IBackend;
-import com.felix.turbobuss.modell.Line;
+import com.felix.main.data.LineData;
+import com.felix.main.data.TravelRoute;
+import com.felix.main.turbobuss.model.IModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        IBackend backend = (IBackend) getServletContext().getAttribute(Keys.BACKEND.toString());
+        IModel backend = (IModel) getServletContext().getAttribute(Keys.BACKEND.toString());
                 
         String action = request.getParameter("action");
         String view = request.getParameter("view");
@@ -65,7 +65,18 @@ public class MainServlet extends HttpServlet {
                     String from = request.getParameter("from");
                     String to = request.getParameter("to");
                     String arrival = request.getParameter("arrival");
-                    request.setAttribute(Keys.PATH.toString(), backend.copmutePath(from, to));
+                    
+                    if(from == null || to == null || arrival == null || arrival.length() != 5){
+                        view = "travelPlanner";
+                        break;
+                    }
+                    
+                    List<TravelRoute> result = backend.copmutePath(arrival, from, to);
+                    if (result == null){
+                        view = "travelPlanner";
+                        break;
+                    }
+                    request.setAttribute(Keys.PATH.toString(), result);
                     content = "partials/travelRoute";
                     break;
                 default:

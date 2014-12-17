@@ -1,5 +1,5 @@
 
-package com.felix.data;
+package com.felix.main.data;
 
 import java.util.List;
 

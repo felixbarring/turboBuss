@@ -1,5 +1,5 @@
 
-package com.felix.turbobuss.modell;
+package com.felix.main.turbobuss.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,7 +56,24 @@ public class Line {
     }
     
     void createAndAddVehicle(HashMap<Stop, ArrivalTime> a, boolean fromAtoB){
-        // Test so that the map is correct :3
+        for(Stop s : stopsAtoB){
+            if(!a.containsKey(s)){
+                try {
+                    throw new Exception("The map did not contain all the neccessary stops");
+                } catch (Exception ex) {
+                    Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            
+            if(a.size() != stopsAtoB.size()){
+                try {
+                    throw new Exception("The map does not conatina the right amount of stops");
+                } catch (Exception ex) {
+                    Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        }
         if (fromAtoB){
             vehiclesAtoB.add(Vehicle.createInstance(a));
         } else {

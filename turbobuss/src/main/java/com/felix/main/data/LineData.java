@@ -1,5 +1,5 @@
 
-package com.felix.data;
+package com.felix.main.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author felix
  */
 public class LineData {

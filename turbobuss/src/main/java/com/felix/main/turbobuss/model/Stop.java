@@ -1,5 +1,5 @@
 
-package com.felix.turbobuss.modell;
+package com.felix.main.turbobuss.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class Stop implements Comparable<Stop> {
         name = n;
         nameLowerCase = name.toLowerCase();
     }
-
+    
     static Stop createInstance(String n) {
         if (takenNames.contains(n)) {
             try {

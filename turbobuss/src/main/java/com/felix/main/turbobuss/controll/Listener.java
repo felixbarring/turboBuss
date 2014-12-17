@@ -1,6 +1,6 @@
-package com.felix.turbobuss.controll;
+package com.felix.main.turbobuss.controll;
 
-import com.felix.turbobuss.modell.Backend;
+import com.felix.main.turbobuss.model.Model;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
@@ -23,7 +23,7 @@ public class Listener implements ServletContextListener, HttpSessionListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         LOG.log(Level.INFO, "*** Loading Backend");
-        sce.getServletContext().setAttribute(Keys.BACKEND.toString(), Backend.getInstance());
+        sce.getServletContext().setAttribute(Keys.BACKEND.toString(), Model.getInstance());
     }
 
     @Override

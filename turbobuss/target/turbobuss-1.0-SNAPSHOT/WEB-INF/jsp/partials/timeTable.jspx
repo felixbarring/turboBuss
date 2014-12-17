@@ -15,7 +15,7 @@
     <section id="pageSection">
         <div class="container">
             <h3> Time table for line ${LINE.getName()} </h3>
-            <p> ${LINE.getA().getName()} - ${LINE.getB().getName()} </p>
+            <p> ${LINE.getStart()} - ${LINE.getEnd()} </p>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -25,7 +25,7 @@
                 <tbody>
                     <c:forEach var="i" items="${LINE.getStopsAtoB()}">
                         <tr>
-                            <td>${i.getName()}</td>
+                            <td>${i}</td>
                             <c:forEach var="t" items="${LINE.getArrivalTimesAtoB(i)}">
                                 <td>${t}</td>
                             </c:forEach>
@@ -35,7 +35,7 @@
             </table>
             
             
-            <p> ${LINE.getB().getName()} - ${LINE.getA().getName()} </p>
+            <p> ${LINE.getEnd()} - ${LINE.getStart()} </p>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -45,7 +45,7 @@
                 <tbody>
                     <c:forEach var="i" items="${LINE.getStopsBtoA()}">
                         <tr>
-                            <td>${i.getName()}</td>
+                            <td>${i}</td>
                             <c:forEach var="t" items="${LINE.getArrivalTimesBtoA(i)}">
                                 <td>${t}</td>
                             </c:forEach>
@@ -53,7 +53,6 @@
                     </c:forEach>
                 </tbody>
             </table>
-            
         </div>
             
     </section>

@@ -1,6 +1,8 @@
 
 package com.felix.turbobuss.modell;
 
+import com.felix.data.LineData;
+import com.felix.data.TravelRoute;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,8 @@ public enum Backend implements IBackend{
     private final List<Stop> allStops = new ArrayList<>();
     private final List<Line> allLines = new ArrayList<>();
     private final List<String> stopNames = new ArrayList<>();
+    
+    private final List<LineData> lineData = new ArrayList<>();
  
     private Backend(){
         Stop langrevsvagen = Stop.createInstance("Langrevsvagen");
@@ -206,7 +210,36 @@ public enum Backend implements IBackend{
             stopNames.add(s.getName());
         }
 
-        
+        for(Line l : allLines){
+            final List<String> stops = new ArrayList<>();
+            for(Stop s : l.getStopsAtoB()){
+                stops.add(s.getName());
+            }
+            
+            final HashMap<String, List<String>> arrivalTimesAtoB = new HashMap<>();
+            for(Stop s : l.getStopsAtoB()){
+                List<String> atStrings = new ArrayList<>();
+                for(ArrivalTime at : l.getArrivalTimesAtoB(s)){
+                    atStrings.add(at.toString());
+                }
+                arrivalTimesAtoB.put(s.getName(), atStrings);
+            }
+            
+            final HashMap<String, List<String>> arrivalTimesBtoA = new HashMap<>();
+            for(Stop s : l.getStopsBtoA()){
+                List<String> atStrings = new ArrayList<>();
+                for(ArrivalTime at : l.getArrivalTimesBtoA(s)){
+                    atStrings.add(at.toString());
+                }
+                arrivalTimesBtoA.put(s.getName(), atStrings);
+            }
+            
+            
+            lineData.add(new LineData(l.getName(), l.getType().toString(), 
+                    l.getA().getName(), l.getB().getName(), stops, 
+                    arrivalTimesAtoB, arrivalTimesBtoA));
+        }
+
     }
     
     public static IBackend getInstance(){
@@ -214,15 +247,15 @@ public enum Backend implements IBackend{
     }
     
     @Override
-    public List<Line> getLines(){
-        return allLines;
+    public List<LineData> getLineData(){
+        return lineData;
     }
     
     @Override    
-    public Line getLine(int id){
-        for (Line l : allLines){
-            if (l.getId() == id){
-                return l;
+    public LineData getLine(String name){
+        for(LineData ld : lineData){
+            if (ld.getName().equals(name)){
+                return ld;
             }
         }
         return null;

@@ -82,7 +82,7 @@ public class Stop implements Comparable<Stop> {
     
     void offerTime(ArrivalTime at, Line l, Stop s) {
         
-        System.out.println("---   --- " + at);
+        //System.out.println("---   --- " + at);
         
         if (bestTime == null || at.isSmallerThan(bestTime)) {
             bestTime = at;
@@ -100,18 +100,11 @@ public class Stop implements Comparable<Stop> {
     }
 
     void computeShortestPathTo(Stop that) {
-        System.out.println("Computing shortest path between " + this.name + " " + that.name);
+        //System.out.println("Computing shortest path between " + this.name + " " + that.name);
         for (int i = 0; i < connectedStops.size(); i++) { 
             if (connectedStops.get(i).equals(that)) {
                 ArrivalTime at = stopConnectedBy.get(i).getBestArrivalTime(this.bestTime, this, that);
                 if(at == null){
-                    System.out.println("O noo we got problem");
-                    System.out.println(" --- " + stopConnectedBy.get(i).getName());
-                    System.out.println(" --- this " + this.name);
-                    System.out.println(" --- that " + that.name);
-                    
-                    
-                    System.out.println(" --- Start time " + this.bestTime);
                     break;
                 }
                 that.offerTime(at, stopConnectedBy.get(i), this);

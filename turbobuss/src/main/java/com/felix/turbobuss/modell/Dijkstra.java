@@ -1,5 +1,6 @@
 package com.felix.turbobuss.modell;
 
+import com.felix.data.TravelRoute;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;

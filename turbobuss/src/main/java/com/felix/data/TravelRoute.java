@@ -1,5 +1,7 @@
 
-package com.felix.turbobuss.modell;
+package com.felix.data;
+
+import java.util.List;
 
 /**
  * @author felix
@@ -10,7 +12,9 @@ public class TravelRoute {
     private final String stop;
     private final String arrivalTime;
     
-    TravelRoute(String l, String s, String at){
+
+    
+    public TravelRoute(String l, String s, String at){
         line = l;
         stop = s;
         arrivalTime = at;

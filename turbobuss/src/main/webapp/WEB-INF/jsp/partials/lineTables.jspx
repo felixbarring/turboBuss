@@ -36,8 +36,8 @@
                     <c:forEach var="i" items="${LINES}">
                         <tr>
                             <td>${i.getName()}</td>         
-                            <td>${i.getType().toString()}</td>
-                            <td><a href="main?view=timeTable&amp;line=${i.getId()}"> Time Table </a></td>
+                            <td>${i.getType()}</td>
+                            <td><a href="main?view=timeTable&amp;line=${i.getName()}"> Time Table </a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

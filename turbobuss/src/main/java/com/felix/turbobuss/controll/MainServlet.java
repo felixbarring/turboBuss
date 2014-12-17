@@ -1,6 +1,7 @@
 
 package com.felix.turbobuss.controll;
 
+import com.felix.data.LineData;
 import com.felix.turbobuss.modell.IBackend;
 import com.felix.turbobuss.modell.Line;
 import java.io.IOException;
@@ -44,13 +45,13 @@ public class MainServlet extends HttpServlet {
             switch (action) {
                 case "filter":  // A POST
                     String filter = request.getParameter("filt");
-                    List<Line> lines = backend.getLines();
+                    List<LineData> lines = backend.getLineData();
                     // Filter here
                     if (filter.equals("")){
                         request.setAttribute(Keys.LINES.toString(), lines);
                     } else {
-                        List<Line> newLines = new ArrayList<>();
-                        for (Line l : lines){
+                        List<LineData> newLines = new ArrayList<>();
+                        for (LineData l : lines){
                             if (l.acceptedByFilter(filter)){
                                 newLines.add(l);
                             }
@@ -80,7 +81,7 @@ public class MainServlet extends HttpServlet {
                     break;
                 case "lineTables":
                     content = "partials/" + view;
-                    List<Line> lines = backend.getLines();
+                    List<LineData> lines = backend.getLineData();
                     request.setAttribute(Keys.LINES.toString(), lines);
                     break;
                 case "travelPlanner":
@@ -92,7 +93,7 @@ public class MainServlet extends HttpServlet {
                     break;
                 case "timeTable":
                     content = "partials/" + view;
-                    int line = Integer.parseInt(request.getParameter("line"));
+                    String line = request.getParameter("line");
                     request.setAttribute(Keys.LINE.toString(), backend.getLine(line));
                     break;
                 default:

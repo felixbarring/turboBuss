@@ -84,7 +84,14 @@ public class Line {
         return stopsBtoA;
     }
     
-    // 
+    public Stop getA(){
+        return stopsAtoB.get(0);
+    }
+    
+    public Stop getB(){
+        return stopsBtoA.get(0);
+    }
+    
     public List<ArrivalTime> getArrivalTimesAtoB(Stop s){
         List<ArrivalTime> arrivalTimes = new ArrayList<>();
         for (Vehicle v : vehiclesAtoB){
@@ -111,12 +118,6 @@ public class Line {
         return arrivalTimes;
     }
   
-    
-    public boolean acceptedByFilter(String filter){
-        final String lcFilter = filter.toLowerCase();
-        return nameLowerCase.equals(lcFilter) || typeLowerCase.equals(lcFilter);
-    }
-    
     private List<Stop> reverse(List<Stop> list){
         List<Stop> reversedList = new ArrayList<>();
         for(int i = list.size()-1; i >= 0; i--){
@@ -173,8 +174,7 @@ public class Line {
             }
         }
         return optimalTime;
-    }
-    
+    } 
     
     public ArrivalTime getBestArrivalTime(ArrivalTime laterThan, Stop start, Stop end){
         

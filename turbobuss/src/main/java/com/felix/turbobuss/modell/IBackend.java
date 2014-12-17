@@ -1,6 +1,8 @@
 
 package com.felix.turbobuss.modell;
 
+import com.felix.data.LineData;
+import com.felix.data.TravelRoute;
 import java.util.List;
 
 /**
@@ -8,9 +10,9 @@ import java.util.List;
  */
 public interface IBackend {
     
-    List<Line> getLines();
+    List<LineData> getLineData();
     
-    Line getLine(int id);
+    LineData getLine(String name);
     
     List<TravelRoute> copmutePath(String startName, String endName);
     

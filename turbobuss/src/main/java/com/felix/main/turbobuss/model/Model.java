@@ -6,8 +6,6 @@ import com.felix.main.data.TravelRoute;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author felix
@@ -18,7 +16,6 @@ public enum Model implements IModel{
     private final List<Stop> allStops = new ArrayList<>();
     private final List<Line> allLines = new ArrayList<>();
     private final List<String> stopNames = new ArrayList<>();
-    
     private final List<LineData> lineData = new ArrayList<>();
  
     private Model(){
@@ -229,7 +226,6 @@ public enum Model implements IModel{
                 }
                 arrivalTimesBtoA.put(s.getName(), atStrings);
             }
-            
             
             lineData.add(new LineData(l.getName(), l.getType().toString(), 
                     l.getA().getName(), l.getB().getName(), stops, 

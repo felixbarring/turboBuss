@@ -17,8 +17,14 @@ public enum Model implements IModel{
     private final List<Line> allLines = new ArrayList<>();
     private final List<String> stopNames = new ArrayList<>();
     private final List<LineData> lineData = new ArrayList<>();
+    
+
  
     private Model(){
+        
+
+        
+        
         Stop langrevsvagen = Stop.createInstance("Langrevsvagen");
         Stop hjalmar = Stop.createInstance("Hjalmar Brantings Platsen");
         Stop lillabommen = Stop.createInstance("Lilla Bommen");
@@ -34,6 +40,10 @@ public enum Model implements IModel{
         allStops.add(jarntorget);
         allStops.add(vasa);
         allStops.add(chalmers);
+        
+        ///
+        
+        ///
         
         List<Stop> rodStops = new ArrayList<>();
         rodStops.add(langrevsvagen);

@@ -1,24 +1,24 @@
+package com.felix.turbobuss.persistence.util;
 
-package com.felix.turbobuss.persistence;
-
-import com.felix.turbobuss.persistence.util.AbstractEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 
 /**
+ * An Author
+ * @author hajo
  *
- * @author fubuntu
  */
 @Entity
-public class Line extends AbstractEntity {
+public class Author extends AbstractEntity  {
+
     @Column(nullable = false)
     private String name;
 
-    public Line() {
+    public Author() {
     }
 
-    public Line(String name) {
+    public Author(String name) {
         this.name = name;
     }
 
@@ -30,10 +30,10 @@ public class Line extends AbstractEntity {
         this.name = name;
     }
 
+  
     @Override
     public String toString() {
         return "Author{" + "id=" + getId() + ", name=" + name + '}';
     }
-    
-    
+
 }

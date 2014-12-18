@@ -10,9 +10,8 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
- * Web application life cycle listener.
  *
- * @author hajo
+ * @author felix
  */
 @WebListener()
 public class Listener implements ServletContextListener, HttpSessionListener {
@@ -28,16 +27,14 @@ public class Listener implements ServletContextListener, HttpSessionListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        // Nothing
     }
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        LOG.log(Level.INFO, "******* Session Created {0}", se.getSession());
+        LOG.log(Level.INFO, "*** Session Created {0}", se.getSession());
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        // Nothing
     }
 }

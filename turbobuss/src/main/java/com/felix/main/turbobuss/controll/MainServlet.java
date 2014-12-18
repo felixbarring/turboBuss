@@ -4,9 +4,12 @@ package com.felix.main.turbobuss.controll;
 import com.felix.main.data.LineData;
 import com.felix.main.data.TravelRoute;
 import com.felix.main.turbobuss.model.IModel;
+import com.felix.turbobuss.persistence.util.Book;
+import com.felix.turbobuss.persistence.util.Library;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +24,12 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "MainServlett", urlPatterns = {"/main"})
 public class MainServlet extends HttpServlet {
 
+    @EJB private Library library;
+
+    public Library getUserRemote() {
+        return library;
+    }
+ 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,6 +41,8 @@ public class MainServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        System.out.println("---------------" + library);
         
         HttpSession session = request.getSession();
         IModel backend = (IModel) getServletContext().getAttribute(Keys.BACKEND.toString());
@@ -87,7 +98,9 @@ public class MainServlet extends HttpServlet {
         // Navigation
         if (view != null) {
             switch (view) {
+                
                 case "home":
+                    library.create(new Book("Alice in wonderland", 666.0f, "A book about describing an acid trip"));
                     content = "partials/" + view;
                     break;
                 case "lineTables":

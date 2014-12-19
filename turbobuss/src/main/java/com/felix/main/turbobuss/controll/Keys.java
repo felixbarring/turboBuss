@@ -7,5 +7,6 @@ public enum Keys {
     LINE,
     TIME_TABLE,
     STOP_NAMES,
+    GUESTS,
     PATH
 }

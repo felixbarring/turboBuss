@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nav class="container">
     
-    <h1> Home </h1>
+    <h1> Welocme to Turbo Buss </h1>
+    
+     <div class="container content-area">
+            <div class="row-fluid">
+                <div class="span12 well">
+                    <p ><font size="5">We travel to a big number of buss stops, and we do it faster than any of our competitors thanks to our twin charged turbos that has been installed in all vehicles. But with good planning we can get you to your target destination even faster, that is why we offer our award winning travel planner that will find the best and fastest possible rout to wherer ever you want to go. </font> </p>
+                </div>
+            </div>
+	</div>
+    
+    
     
 </nav>

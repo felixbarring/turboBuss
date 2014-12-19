@@ -167,7 +167,7 @@ public class Line {
         // Find all vehicles that leaves from the start after 'latherThan'
         List<Vehicle> candidates = new ArrayList<>();
         for (Vehicle v : vehicles){
-            System.out.println(" --- " + v.getArrivalTime(start) );
+            //System.out.println(" --- " + v.getArrivalTime(start) );
             if (v.getArrivalTime(start).isBiggerThan(laterThan)){
                 candidates.add(v);
             }
@@ -176,7 +176,7 @@ public class Line {
             return null;
         }
         
-        System.out.println("Candidate Size" + candidates.size());
+        //System.out.println("Candidate Size" + candidates.size());
 
         // For these vehicles, find the one that arrive first at the end.
         // This is the optimal vehicle

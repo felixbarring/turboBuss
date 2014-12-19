@@ -4,8 +4,8 @@ package com.felix.main.turbobuss.controll;
 import com.felix.main.data.LineData;
 import com.felix.main.data.TravelRoute;
 import com.felix.main.turbobuss.model.IModel;
-import com.felix.turbobuss.persistence.util.Book;
-import com.felix.turbobuss.persistence.util.Library;
+import com.felix.turbobuss.persistence.util.Guest;
+import com.felix.turbobuss.persistence.util.GuestCollection;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +24,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "MainServlett", urlPatterns = {"/main"})
 public class MainServlet extends HttpServlet {
 
-    @EJB private Library library;
+    @EJB private GuestCollection library;
 
-    public Library getUserRemote() {
-        return library;
-    }
- 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,9 +37,7 @@ public class MainServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        System.out.println("---------------" + library);
-        
+               
         HttpSession session = request.getSession();
         IModel backend = (IModel) getServletContext().getAttribute(Keys.BACKEND.toString());
                 
@@ -90,6 +84,13 @@ public class MainServlet extends HttpServlet {
                     request.setAttribute(Keys.PATH.toString(), result);
                     content = "partials/travelRoute";
                     break;
+                case "newGuest":
+                    String guest = request.getParameter("guest");
+                    if (guest != null && guest.length() != 0){
+                        library.create(new Guest(guest));
+                    }
+                    view = "guestList";
+                    break;
                 default:
                     ;
             }
@@ -98,9 +99,7 @@ public class MainServlet extends HttpServlet {
         // Navigation
         if (view != null) {
             switch (view) {
-                
                 case "home":
-                    library.create(new Book("Alice in wonderland", 666.0f, "A book about describing an acid trip"));
                     content = "partials/" + view;
                     break;
                 case "lineTables":
@@ -119,6 +118,10 @@ public class MainServlet extends HttpServlet {
                     content = "partials/" + view;
                     String line = request.getParameter("line");
                     request.setAttribute(Keys.LINE.toString(), backend.getLine(line));
+                    break;
+                case "guestList":
+                    content = "partials/" + view;
+                    request.setAttribute(Keys.GUESTS.toString(), library.findAll());
                     break;
                 default:
                     request.getRequestDispatcher("WEB-INF/jsp/main.jspx").forward(request, response);

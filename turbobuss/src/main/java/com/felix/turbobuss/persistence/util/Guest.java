@@ -10,15 +10,15 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-public class Author extends AbstractEntity  {
+public class Guest extends AbstractEntity  {
 
     @Column(nullable = false)
     private String name;
 
-    public Author() {
+    public Guest() {
     }
 
-    public Author(String name) {
+    public Guest(String name) {
         this.name = name;
     }
 
@@ -33,7 +33,7 @@ public class Author extends AbstractEntity  {
   
     @Override
     public String toString() {
-        return "Author{" + "id=" + getId() + ", name=" + name + '}';
+        return " - Guest with " + "id=" + getId() + " and name " + name + " - ";
     }
 
 }

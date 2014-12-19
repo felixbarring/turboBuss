@@ -15,6 +15,7 @@
                  <a href="main?view=home" class="btn btn-default" role="button">Home</a>
                 <a href="main?view=lineTables" class="btn btn-default" role="button">Time Tables</a>
                 <a href="main?view=travelPlanner" class="btn btn-default" role="button">Travel Planner</a>  
+                <a href="main?view=guestList" class="btn btn-default" role="button">Guest List</a>
                 <a href="main?view=about" class="btn btn-default" role="button">About</a>
             </ul>
             <ul class="nav navbar-nav navbar-right">

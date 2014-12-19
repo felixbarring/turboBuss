@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root 
+    xmlns:jsp="http://java.sun.com/JSP/Page"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns="http://www.w3.org/1999/xhtml"
+    version="2.0">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8" />
+    <jsp:output omit-xml-declaration="true" />
+    <jsp:output doctype-root-element="HTML" 
+                doctype-system="about:legacy-compat" />
+    
+    <h3> Add your name to our list of satisfied TurboBuss users </h3>
+    
+    <section id="pageSection">
+        <c:forEach var="i" items="${GUESTS}">
+            <tr>
+                <td>${i}</td>
+                <c:forEach var="t" items="${LINE.getArrivalTimesBtoA(i)}">
+                    <td>${t}</td>
+                </c:forEach>
+            </tr>
+        </c:forEach>
+        
+        
+        <form action="main?action=newGuest" method="post">
+            <fieldset  class="form-group">
+                <input id="txtItem" type="text" name="guest" value="Put your stupid name here"/>
+                <input type="submit" value="Add Your Name"/>
+            </fieldset>
+        </form>
+        
+        
+    </section>
+</jsp:root>
